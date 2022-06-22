@@ -1,15 +1,15 @@
 import { Router } from '@angular/router';
-import { IFilme } from './../model/IFilme';
+import { IAtor } from './../model/IAtor';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-filme-detalhe',
-  templateUrl: './filme-detalhe.page.html',
-  styleUrls: ['./filme-detalhe.page.scss'],
+  selector: 'app-ator-detalhe',
+  templateUrl: './ator-detalhe.page.html',
+  styleUrls: ['./ator-detalhe.page.scss'],
 })
-export class FilmeDetalhePage implements OnInit {
-  filme: any;
+export class AtorDetalhePage implements OnInit {
+  ator: any;
 
   constructor(private route: ActivatedRoute, private router: Router) { 
 
@@ -19,7 +19,7 @@ export class FilmeDetalhePage implements OnInit {
     this.route.queryParams.subscribe(params => {
       const getNav = this.router.getCurrentNavigation();
       if(getNav.extras.state){
-        this.filme = getNav.extras.state.paramFilme;
+        this.ator = getNav.extras.state.paramFilme;
       }
     });
   }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
+import { AlertController, ToastController } from '@ionic/angular';
 import { IAtor } from '../model/IAtor';
 
 @Component({
@@ -8,7 +10,7 @@ import { IAtor } from '../model/IAtor';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(public router: Router, public alertController: AlertController, public toastController: ToastController) {}
 
   listaAtores: IAtor[] = [
     {
@@ -58,4 +60,39 @@ export class Tab3Page {
     }
   ];
 
+  exibirAtor(ator: IAtor){
+    const navigationExtras: NavigationExtras = {state:{paramFilme:ator}};
+    this.router.navigate(['ator-detalhe'],navigationExtras);
+  }
+  async exibirAlertaFavorito(ator: IAtor) {
+    const alert = await this.alertController.create({
+      header: 'Meus Favoritos',
+      message: 'Deseja realmente favoritar o ator?',
+      buttons: [
+        {
+          text: 'Não',
+          role: 'cancel',
+          handler: () => {
+            ator.favorito=false;
+          }
+        }, {
+          text: 'Sim, favoritar.',
+          handler: () => {
+            ator.favorito=true;
+            this.apresentarToast();
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+  async apresentarToast() {
+    const toast = await this.toastController.create({
+      message: 'Ator adicionado aos favoritos!',
+      duration: 2000,
+      color: 'success',
+      position: 'top'
+    });
+    toast.present();
+  }
 }

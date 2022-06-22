@@ -1,15 +1,15 @@
 import { Router } from '@angular/router';
-import { IFilme } from './../model/IFilme';
+import { ISerie } from './../model/ISerie';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-filme-detalhe',
-  templateUrl: './filme-detalhe.page.html',
-  styleUrls: ['./filme-detalhe.page.scss'],
+  selector: 'app-serie-detalhe',
+  templateUrl: './serie-detalhe.page.html',
+  styleUrls: ['./serie-detalhe.page.scss'],
 })
-export class FilmeDetalhePage implements OnInit {
-  filme: any;
+export class SerieDetalhePage implements OnInit {
+  serie: any;
 
   constructor(private route: ActivatedRoute, private router: Router) { 
 
@@ -19,9 +19,10 @@ export class FilmeDetalhePage implements OnInit {
     this.route.queryParams.subscribe(params => {
       const getNav = this.router.getCurrentNavigation();
       if(getNav.extras.state){
-        this.filme = getNav.extras.state.paramFilme;
+        this.serie = getNav.extras.state.paramFilme;
       }
     });
   }
 
 }
+
